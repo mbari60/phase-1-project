@@ -38,7 +38,11 @@ function displayCountryDetails(data) {
             <p>Area: ${country.area} km²</p>
             <p>Region: ${country.region}</p>
             <p>Subregion: ${country.subregion}</p>
-            <img src="${country.flags[1]}" alt="${country.name.common} Flag" />
+            <img src="${country.flags[1]}" alt="${country.name.common} Flag" style="max-width: 100%"/>
+            <hr/>
+            <button id="likeButton">Mark as Favorite</button>
+            <button id="addToVisit">Add to To-Visit List</button>
+            <button id="viewMore">View More</button>
         `;
     countryDetails.innerHTML = details;
   } else {
@@ -167,7 +171,6 @@ async function searchByLanguage() {
     }
     return false;
   });
-
   // Display the list of countries that use the selected language
   if (countriesByLanguage.length > 0) {
     const ol = document.createElement("ol");
@@ -187,3 +190,43 @@ const languageButton = document.getElementById("search-language-button");
 languageButton.addEventListener("click",()=>{
   searchByLanguage();
 })
+//quizess about the site 
+async function quizes() {
+  countryDetails.innerHTML = "";
+  lists.innerHTML = "";
+  // Creating the questions
+  const quiz1 = document.createElement("form");
+  quiz1.classList.add("form")
+  //the label represents the question and the inputs gives user a platform to enter the marks
+  quiz1.innerHTML = `
+    <label for="landlockedQuestion">How many countries are landlocked?</label>
+    <input type="text" id="landlockedQuestion" placeholder="Enter your answer"><br>
+    <hr/>
+    <label for="swahiliQuestion">How many countries use Swahili as a language?</label>
+    <input type="text" id="swahiliQuestion" placeholder="Enter your answer" ><br>
+     <hr/>
+    <label for="hindiQuestion">How many countries use Hindi as their language?</label>
+    <input type="text" id="hindiQuestion" placeholder="Enter your answer"><br>
+     <hr/>
+    <label for="spanishQuestion">How many countries use Spanish as their language?</label>
+    <input type="text" id="spanishQuestion" placeholder="Enter your answer"><br>
+     <hr/>
+    <label for="kenyaPopulationQuestion">What is the population of Kenya?</label>
+    <input type="text" id="kenyaQuestion" placeholder="Enter your answer"><br>
+     <hr/>
+    <button id="quizSubmitButton" type="button">Submit</button>
+  `;
+  // Appending the questions to the qcountrydetails in html
+  countryDetails.appendChild(quiz1);
+  // Adding an event listener for the submit button
+  const submitButton = document.getElementById("quizSubmitButton");
+  submitButton.addEventListener("click",()=>{
+    checkAnswers();
+
+  });
+}
+ //ading an event listener to the quiz button to provide questions when it is clicked 
+ const quiz = document.getElementById("quizz");
+  quiz.addEventListener("click", () => {
+    quizes();
+  });
