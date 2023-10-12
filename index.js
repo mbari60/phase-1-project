@@ -145,4 +145,3 @@ const landlockedButton = document.getElementById("searchLandlocked");
 landlockedButton.addEventListener("click", () => {
   searchLandlockedCountries();
 });
-
