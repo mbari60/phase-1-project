@@ -33,6 +33,13 @@ button {
    cursor: pointer;
    width: auto;
     }
+
  button:hover {
  background-color: #dfc6c1;
  }
+
+@media (max-width: 970px) {
+    #default-countries {
+        flex-direction: column; 
+    }
+}

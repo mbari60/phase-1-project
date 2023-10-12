@@ -145,3 +145,45 @@ const landlockedButton = document.getElementById("searchLandlocked");
 landlockedButton.addEventListener("click", () => {
   searchLandlockedCountries();
 });
+//adding a search button that will be by languages(search by language)
+async function searchByLanguage() {
+  const languageSelect = document.getElementById("language-select");
+  const selectedLanguage = languageSelect.value;
+  const lists = document.getElementById("lists");
+  lists.innerHTML = ""; // Clear previous search results
+  countryDetails.innerHTML = "";//clear content of countrydetails
+  //await fetch
+  const data = await fetchData();
+
+  // Filter countries that use the selected language
+  const countriesByLanguage = data.filter((country) => {
+    for (const languageCode in country.languages) {
+      if (
+        country.languages[languageCode].toLowerCase() ===
+        selectedLanguage.toLowerCase()
+      ) {//if language uses the language thenits true 
+        return true;
+      }
+    }
+    return false;
+  });
+
+  // Display the list of countries that use the selected language
+  if (countriesByLanguage.length > 0) {
+    const ol = document.createElement("ol");
+    countriesByLanguage.forEach((country) => {
+      const li = document.createElement("li");
+      li.textContent = country.name.common;
+      li.style.color = "#008080";
+      ol.appendChild(li);
+    });
+    lists.appendChild(ol);
+  } else {
+    lists.textContent = `No countries speak ${selectedLanguage}.`;
+  }
+}
+//telling the language button wo display languages when clicked
+const languageButton = document.getElementById("search-language-button");
+languageButton.addEventListener("click",()=>{
+  searchByLanguage();
+})
