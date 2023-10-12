@@ -230,3 +230,57 @@ async function quizes() {
   quiz.addEventListener("click", () => {
     quizes();
   });
+//creating fuction to check answers
+function checkAnswers(){
+  // cheking the answers the user had input 
+  // lets use the or operator || for those who used words and those who used numbers to be marked right
+  let score =0;//initializing the score to 0
+  const quizlandlocked = document.getElementById("landlockedQuestion");
+  const answerlandlocked = quizlandlocked.value;//getting the input of user and storing it to answer so that it may be checked using the if
+  if ( answerlandlocked === "45" || answerlandlocked === 45 || answerlandlocked.toLowerCase() === "fortyfive") {
+    score += 5;//incrementing the score each and every time the user gets  correct answer
+    quizlandlocked.style.backgroundColor = "green"; // here we are marking the question correct
+  } else {
+    quizlandlocked.style.backgroundColor = "red"; // here we are marking the question wrong
+  }
+  const quizSwahili = document.getElementById("swahiliQuestion");
+  const answerSwahili = quizSwahili.value;
+  if (answerSwahili === "4" || answerSwahili === 4 || answerSwahili === "four") {
+    score += 5;
+    quizSwahili.style.backgroundColor = "green"; 
+  } else {
+    quizSwahili.style.backgroundColor = "red"; 
+  }
+
+  const quizHindi = document.getElementById("hindiQuestion");
+  const answerHindi = quizHindi.value;
+  if (answerHindi === "1" || answerHindi === 1 || answerHindi === "one") {
+    score += 5;
+    quizHindi.style.backgroundColor = "green"; 
+  } else {
+    quizHindi.style.backgroundColor = "red"; 
+  }
+
+  const quizSpanish = document.getElementById("spanishQuestion");
+  const answerSpanish = quizSpanish.value;
+  if (answerSpanish === "24" || answerSpanish === 24 || answerSpanish === "twentyfour") {
+    score += 5;
+    quizSpanish.style.backgroundColor = "green";
+  } else {
+    quizSpanish.style.backgroundColor = "red";
+  }
+ const quizKenya = document.getElementById("kenyaQuestion");
+ const answerKenya = quizKenya.value;
+ if (answerKenya >=53000000 && answerKenya <= 54000000) {
+   score += 5;
+   quizKenya.style.backgroundColor = "green"; 
+ } else {
+   quizKenya.style.backgroundColor = "red"; 
+ }
+
+//congratulating those with 20 and above and telling the others to try better next time
+ if(score>20){
+    alert( `congratulation your score is ${score}`)
+ }
+  alert(`your Score is : ${score} next time you will get a 20 and above`);
+}
