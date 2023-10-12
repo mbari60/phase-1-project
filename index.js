@@ -25,6 +25,7 @@ function getCountries() {
 // Function to clear the country details
 function clearCountryDetails() {
   countryDetails.innerHTML = ""; // Clear the content
+  lists.innerHTML = "";
 }
 //creating a function to display the country that was searched
 function displayCountryDetails(data) {
@@ -45,7 +46,6 @@ function displayCountryDetails(data) {
   }
 }
 
-
 // Adding an event listener for the search button to get countries when the button is clicked
 searchButton.addEventListener("click", function () {
   getCountries();
@@ -55,8 +55,8 @@ function defaultDisplay() {
   fetch("https://restcountries.com/v3/all")
     .then((res) => res.json())
     .then((data) => {
-        //getting where we will append 
-        const defaultcountries = document.getElementById("default-countries");
+      //getting where we will append
+      const defaultcountries = document.getElementById("default-countries");
       // Getting the first 6 countries to display as default before the search is conducted
       const countriesData = data.slice(0, 6);
       countriesData.forEach((country) => {
@@ -99,6 +99,50 @@ function defaultDisplay() {
     });
 }
 //loading the DOM
-document.addEventListener("DOMContentLoaded",function(){
-    defaultDisplay();
-})
+document.addEventListener("DOMContentLoaded", function () {
+  defaultDisplay();
+});
+//getting a list of landlocked countries
+//first lets fetch all details from the api
+async function fetchData() {
+  try {
+    const response = await fetch("https://restcountries.com/v3.1/all");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+//function to search and display all landlocked countries
+async function searchLandlockedCountries() {
+  const lists = document.getElementById("lists");
+  lists.innerHTML = "";
+  countryDetails.innerHTML = "";
+  const data = await fetchData();
+  //now we filter to get only the landlocked countries from the country data
+  const landlockedCountries = data.filter((country) => {
+    return country.landlocked === true;
+  });
+  // Displaying the list of landlocked countries if there is any
+  if (landlockedCountries.length > 0) {
+    //where we will append the list
+    const orderedlistOfLandlocked = document.createElement("ol");
+    landlockedCountries.forEach((country) => {
+      //listing content
+      const listOfLandlocked = document.createElement("li");
+      listOfLandlocked.style.color = "#008080";
+      listOfLandlocked.textContent = country.name.common;
+      //appending to the unordered list
+      orderedlistOfLandlocked.appendChild(listOfLandlocked);
+    });
+    lists.appendChild(orderedlistOfLandlocked);
+  } else {
+    lists.textContent = "No landlocked countries found";
+  }
+}
+//telling the landlocked button what to execute once it is clicked
+const landlockedButton = document.getElementById("searchLandlocked");
+landlockedButton.addEventListener("click", () => {
+  searchLandlockedCountries();
+});
+
