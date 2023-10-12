@@ -41,10 +41,12 @@ function displayCountryDetails(data) {
             <img src="${country.flags[1]}" alt="${country.name.common} Flag" style="max-width: 100%"/>
             <hr/>
             <button id="likeButton">Mark as Favorite</button>
-            <button id="addToVisit">Add to To-Visit List</button>
-            <button id="viewMore">View More</button>
         `;
-    countryDetails.innerHTML = details;
+      countryDetails.innerHTML = details;
+      const like = document.getElementById("likeButton");
+      like.addEventListener("click", () => {
+        like.style.backgroundColor = "red";
+      });
   } else {
     countryDetails.innerHTML = "Country not found.";
   }
@@ -75,7 +77,7 @@ function defaultDisplay() {
         capital.textContent = "Capital: " + country.capital;
         // Creating a paragraph for the region the country is located in
         const region = document.createElement("p");
-        region.textContent = "Region: " + country.region;
+        region.textContent = `region : ${country.region}`;
         // Createing a paragraph for the population of the country
         const population = document.createElement("p");
         population.textContent = "Population: " + country.population;
@@ -199,19 +201,19 @@ async function quizes() {
   quiz1.classList.add("form")
   //the label represents the question and the inputs gives user a platform to enter the marks
   quiz1.innerHTML = `
-    <label for="landlockedQuestion">How many countries are landlocked?</label>
+    <label for="landlockedQuestion"id="landlockedLabel">How many countries are landlocked?</label>
     <input type="text" id="landlockedQuestion" placeholder="Enter your answer"><br>
     <hr/>
-    <label for="swahiliQuestion">How many countries use Swahili as a language?</label>
+    <label for="swahiliQuestion"id="swahiliLabel">How many countries use Swahili as a language?</label>
     <input type="text" id="swahiliQuestion" placeholder="Enter your answer" ><br>
      <hr/>
-    <label for="hindiQuestion">How many countries use Hindi as their language?</label>
+    <label for="hindiQuestion" id="hindiLabel">How many countries use Hindi as their language?</label>
     <input type="text" id="hindiQuestion" placeholder="Enter your answer"><br>
      <hr/>
-    <label for="spanishQuestion">How many countries use Spanish as their language?</label>
+    <label for="spanishQuestion"id="spanishLabel">How many countries use Spanish as their language?</label>
     <input type="text" id="spanishQuestion" placeholder="Enter your answer"><br>
      <hr/>
-    <label for="kenyaPopulationQuestion">What is the population of Kenya?</label>
+    <label for="kenyaPopulationQuestion" id="kenyaLabel">What is the population of Kenya?</label>
     <input type="text" id="kenyaQuestion" placeholder="Enter your answer"><br>
      <hr/>
     <button id="quizSubmitButton" type="button">Submit</button>
@@ -279,8 +281,9 @@ function checkAnswers(){
  }
 
 //congratulating those with 20 and above and telling the others to try better next time
- if(score>20){
+ if(score>=20){
     alert( `congratulation your score is ${score}`)
- }
-  alert(`your Score is : ${score} next time you will get a 20 and above`);
+ }else{
+     alert(`your Score is : ${score} next time you will get a 20 and above`);
+}
 }
