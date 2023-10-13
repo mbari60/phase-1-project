@@ -42,11 +42,11 @@ function displayCountryDetails(data) {
             <hr/>
             <button id="likeButton">Mark as Favorite</button>
         `;
-      countryDetails.innerHTML = details;
-      const like = document.getElementById("likeButton");
-      like.addEventListener("click", () => {
-        like.style.backgroundColor = "red";
-      });
+    countryDetails.innerHTML = details;
+    const like = document.getElementById("likeButton");
+    like.addEventListener("click", () => {
+      like.style.backgroundColor = "red";
+    });
   } else {
     countryDetails.innerHTML = "Country not found.";
   }
@@ -157,7 +157,7 @@ async function searchByLanguage() {
   const selectedLanguage = languageSelect.value;
   const lists = document.getElementById("lists");
   lists.innerHTML = ""; // Clear previous search results
-  countryDetails.innerHTML = "";//clear content of countrydetails
+  countryDetails.innerHTML = ""; //clear content of countrydetails
   //await fetch
   const data = await fetchData();
 
@@ -167,7 +167,8 @@ async function searchByLanguage() {
       if (
         country.languages[languageCode].toLowerCase() ===
         selectedLanguage.toLowerCase()
-      ) {//if language uses the language thenits true 
+      ) {
+        //if language uses the language thenits true
         return true;
       }
     }
@@ -189,16 +190,16 @@ async function searchByLanguage() {
 }
 //telling the language button wo display languages when clicked
 const languageButton = document.getElementById("search-language-button");
-languageButton.addEventListener("click",()=>{
+languageButton.addEventListener("click", () => {
   searchByLanguage();
-})
-//quizess about the site 
+});
+//quizess about the site
 async function quizes() {
   countryDetails.innerHTML = "";
   lists.innerHTML = "";
   // Creating the questions
   const quiz1 = document.createElement("form");
-  quiz1.classList.add("form")
+  quiz1.classList.add("formQuestions");
   //the label represents the question and the inputs gives user a platform to enter the marks
   quiz1.innerHTML = `
     <label for="landlockedQuestion"id="landlockedLabel">How many countries are landlocked?</label>
@@ -216,74 +217,125 @@ async function quizes() {
     <label for="kenyaPopulationQuestion" id="kenyaLabel">What is the population of Kenya?</label>
     <input type="text" id="kenyaQuestion" placeholder="Enter your answer"><br>
      <hr/>
+    <label for="capitalCity" id="usaCapital">What is the capital city of united states?</label>
+    <input type="text" id="capitalUsa" placeholder="Enter your answer"><br>
+     <hr/>
+    <label for="germanSubregion" id="germanSubregion">What is the sub-region where german is located?</label>
+    <input type="text" id="germanQuestion" placeholder="Enter your answer"><br>
+     <hr/>
+      <hr/>
+    <label for="madagascar" id="madagascarCapital">What is the capital city of Madagascar?</label>
+    <input type="text" id="madagascarQuestion" placeholder="Enter your answer"><br>
+     <hr/>
     <button id="quizSubmitButton" type="button">Submit</button>
   `;
   // Appending the questions to the qcountrydetails in html
   countryDetails.appendChild(quiz1);
   // Adding an event listener for the submit button
   const submitButton = document.getElementById("quizSubmitButton");
-  submitButton.addEventListener("click",()=>{
+  submitButton.addEventListener("click", () => {
     checkAnswers();
-
   });
 }
- //ading an event listener to the quiz button to provide questions when it is clicked 
- const quiz = document.getElementById("quizz");
-  quiz.addEventListener("click", () => {
-    quizes();
-  });
+//ading an event listener to the quiz button to provide questions when it is clicked
+const quiz = document.getElementById("quizz");
+quiz.addEventListener("click", () => {
+  quizes();
+});
 //creating fuction to check answers
-function checkAnswers(){
-  // cheking the answers the user had input 
+function checkAnswers() {
+  // cheking the answers the user had input
   // lets use the or operator || for those who used words and those who used numbers to be marked right
-  let score =0;//initializing the score to 0
+  let score = 0; //initializing the score to 0
   const quizlandlocked = document.getElementById("landlockedQuestion");
-  const answerlandlocked = quizlandlocked.value;//getting the input of user and storing it to answer so that it may be checked using the if
-  if ( answerlandlocked === "45" || answerlandlocked === 45 || answerlandlocked.toLowerCase() === "fortyfive") {
-    score += 5;//incrementing the score each and every time the user gets  correct answer
+  const answerlandlocked = quizlandlocked.value; //getting the input of user and storing it to answer so that it may be checked using the if
+  if (
+    answerlandlocked === "45" ||
+    answerlandlocked === 45 ||
+    answerlandlocked.toLowerCase() === "fortyfive" //this are the expected answers
+  ) {
+    score += 5; //incrementing the score each and every time the user gets  correct answer
     quizlandlocked.style.backgroundColor = "green"; // here we are marking the question correct
   } else {
     quizlandlocked.style.backgroundColor = "red"; // here we are marking the question wrong
   }
   const quizSwahili = document.getElementById("swahiliQuestion");
   const answerSwahili = quizSwahili.value;
-  if (answerSwahili === "4" || answerSwahili === 4 || answerSwahili === "four") {
+  if (
+    answerSwahili === "4" ||
+    answerSwahili === 4 ||
+    answerSwahili === "four"
+  ) {
     score += 5;
-    quizSwahili.style.backgroundColor = "green"; 
+    quizSwahili.style.backgroundColor = "green";
   } else {
-    quizSwahili.style.backgroundColor = "red"; 
+    quizSwahili.style.backgroundColor = "red";
   }
 
   const quizHindi = document.getElementById("hindiQuestion");
   const answerHindi = quizHindi.value;
   if (answerHindi === "1" || answerHindi === 1 || answerHindi === "one") {
     score += 5;
-    quizHindi.style.backgroundColor = "green"; 
+    quizHindi.style.backgroundColor = "green";
   } else {
-    quizHindi.style.backgroundColor = "red"; 
+    quizHindi.style.backgroundColor = "red";
   }
 
   const quizSpanish = document.getElementById("spanishQuestion");
   const answerSpanish = quizSpanish.value;
-  if (answerSpanish === "24" || answerSpanish === 24 || answerSpanish === "twentyfour") {
+  if (
+    answerSpanish === "24" ||
+    answerSpanish === 24 ||
+    answerSpanish === "twentyfour"
+  ) {
     score += 5;
     quizSpanish.style.backgroundColor = "green";
   } else {
     quizSpanish.style.backgroundColor = "red";
   }
- const quizKenya = document.getElementById("kenyaQuestion");
- const answerKenya = quizKenya.value;
- if (answerKenya >=53000000 && answerKenya <= 54000000) {
-   score += 5;
-   quizKenya.style.backgroundColor = "green"; 
- } else {
-   quizKenya.style.backgroundColor = "red"; 
- }
-
-//congratulating those with 20 and above and telling the others to try better next time
- if(score>=20){
-    alert( `congratulation your score is ${score}`)
- }else{
-     alert(`your Score is : ${score} next time you will get a 20 and above`);
-}
+  const quizKenya = document.getElementById("kenyaQuestion");
+  const answerKenya = quizKenya.value;
+  if (answerKenya >= 53000000 && answerKenya <= 54000000) {
+    score += 5;
+    quizKenya.style.backgroundColor = "green";
+  } else {
+    quizKenya.style.backgroundColor = "red";
+  }
+  const capital = document.getElementById("capitalUsa");
+  const answercapital = capital.value;
+  if (
+    answercapital === "Washington D.C" ||
+    answercapital === `Washington, D.C.` ||
+    answercapital === `washindton d.c`
+  ) {
+    score += 5;
+    capital.style.backgroundColor = "green";
+  } else {
+    capital.style.backgroundColor = "red";
+  }
+  const germanQuestion = document.getElementById("germanQuestion");
+  const answerGerman = germanQuestion.value;
+  if (answerGerman === "Western Europe" || answerGerman === "western europe") {
+    score += 5;
+    germanQuestion.style.backgroundColor = "green";
+  } else {
+    germanQuestion.style.backgroundColor = "red";
+  }
+  const madagascarQuestion = document.getElementById("madagascarQuestion");
+  const answerMadagascar = madagascarQuestion.value;
+  if (
+    answerMadagascar === "Antananarivo" ||
+    answerMadagascar === "antananarivo"
+  ) {
+    score += 5;
+    madagascarQuestion.style.backgroundColor = "green";
+  } else {
+    madagascarQuestion.style.backgroundColor = "red";
+  }
+  //congratulating those with 20 and above and telling the others to try better next time
+  if (score >= 20) {
+    alert(`congratulation your score is ${score}`);
+  } else {
+    alert(`your Score is : ${score} next time you will get a 20 and above`);
+  }
 }
