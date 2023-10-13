@@ -54,7 +54,7 @@ function displayCountryDetails(data) {
 
 // Adding an event listener for the search button to get countries when the button is clicked
 searchButton.addEventListener("click", function () {
-  getCountries();
+     getCountries()
 });
 // Creating some countries to be displayed before the search is conducted
 function defaultDisplay() {
@@ -223,7 +223,6 @@ async function quizes() {
     <label for="germanSubregion" id="germanSubregion">What is the sub-region where german is located?</label>
     <input type="text" id="germanQuestion" placeholder="Enter your answer"><br>
      <hr/>
-      <hr/>
     <label for="madagascar" id="madagascarCapital">What is the capital city of Madagascar?</label>
     <input type="text" id="madagascarQuestion" placeholder="Enter your answer"><br>
      <hr/>
