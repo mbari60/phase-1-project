@@ -48,3 +48,16 @@ button {
     padding: 20px;
     margin-top: auto;
 }
+#footer {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: #008080;
+    font-size: larger;
+}
+
+#footer > * {
+    width: 50%; 
+    padding: 15px; 
+    box-sizing: border-box;
+}
