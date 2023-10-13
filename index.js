@@ -232,7 +232,8 @@ async function quizes() {
   countryDetails.appendChild(quiz1);
   // Adding an event listener for the submit button
   const submitButton = document.getElementById("quizSubmitButton");
-  submitButton.addEventListener("click", () => {
+  submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
     checkAnswers();
   });
 }

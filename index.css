@@ -3,6 +3,7 @@
      margin: 0;
      padding: 0;
      background-color: #f0f0f0;
+     min-height: 100vh;
     }
  h1 {
     text-align: center;
@@ -12,6 +13,7 @@
    }
 #container{
     text-align: center;
+    min-height: 100vh;
 }
 #default-countries {
     display: flex;
@@ -54,6 +56,9 @@ button {
     text-align: center;
     background-color: #008080;
     font-size: larger;
+    align-self: baseline;
+    bottom: 0;
+    width:97vw;
 }
 
 #footer > * {
